@@ -2,14 +2,23 @@
 
 //[X]we need to encrypt the password before storing inside the database - decrypt password using a secret key
 //[X]make the apis protected - security layer 2
-//[]authorise the ApIs - data is restricted to every user - jwt token !(json web token)-security layer 3
+//[X]authorise the ApIs - data is restricted to every user - jwt token !(json web token)-security layer 3
+//[X] role level authorisation
 //[X]error handling / exception handling
-//Pagination and Filtering at an API level - 40000 posts - NO, 40, 40, 40....... reached rock bottom of the number 40,000
-//soft delete and hard delete 
+//[X]Pagination and Filtering at an API level - 40000 posts - NO, 40, 40, 40....... reached rock bottom of the number 40,000
+//[X]soft delete and hard delete 
 //[X]middleware
-//file uploading
-//validations
-//websockets!
+//[]file uploading
+//[]validations
+//[]websockets!
+
+//fs & multer
+//fs = File storeage, this package has all the functions needed to read, write and append a file
+
+//5,000,000 users = 0.2=1,000,000kb = 1000mb =1gb
+//3,000,000,000 users = 3,000,000 = 0.2 =6,000,000,000kb=6,000,000mb=6000gb 
+//100 users = 100=0.2=2kb->20kb->20kb->
+//5 - 1kb ~ 1 - 0.2kb
 
 //google and understand the difference between authentication and authorization
 

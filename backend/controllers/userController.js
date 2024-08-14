@@ -69,13 +69,25 @@ exports.loginUser = async (req, res)=>{
 }
 //this function gets me all the users present inside the MongoDB collection Users
 exports.getAllUsers = async(req, res)=>{
-    //the logic to get all the data present inside the collection users
-    const users = await User.find({});
+    try{
+        //for pagination I need page number and limit 
+        const { page, limit } = req.query
+        //tranform my operation to show me only  the entries on a specfic page with its limit
+
+        //the logic to get all the data present inside the collection users
+        //within my operation I need to write a condition which returns only the users for whom isDelete: false
+        const users = await User.find({isDeleted: false}).limit(limit).skip((page-1) * limit).exec(); 
     
-    res.status(200).json({
-        success: true,
-        data: users
-    })
+        res.status(200).json({
+          success: true,
+          data: users
+        })
+    } catch(err){
+      res.status(500).json({
+        success:false,
+        message: err.message
+      })
+    }
 }
 
 //this function updates a user by its id
@@ -100,4 +112,26 @@ exports.updateUserById = async(req, res)=>{
         message: 'error occured'
     })
 }
+}
+
+// This function is responsible for soft deleting a user from mongodb
+exports.softDeleteById = async (req, res) => {
+    const { id } = req.params
+
+    try {
+        const user = await User.findById(id)
+
+        user.isDeleted = true;
+        user.save();
+
+        res.status(200).json({
+            success: true,
+            data: user
+        })
+    } catch (err)   {
+        res.status(500).json({
+            success: false,
+            message: err.message
+        })
+    }
 }

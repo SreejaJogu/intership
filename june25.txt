@@ -1,0 +1,4 @@
+[X] Authenticate UpdateUserByID API (done)
+[X] Authorise UpdateUserByID API to be only run by 'Student'
+[X] Write an API and create its endpoint in userRoute.js which basically soft deletes the user from the database. HINT: This will be a PUT API
+[X] Inside GetAllUsers API, write the logic to only show the users for whom isDelete: false. Basically, the users which have been soft deleted from the database shall not come in the response of GetAllUsers API.
