@@ -8,12 +8,17 @@
 //[X]Pagination and Filtering at an API level - 40000 posts - NO, 40, 40, 40....... reached rock bottom of the number 40,000
 //[X]soft delete and hard delete 
 //[X]middleware
-//[]file uploading
-//[]validations
-//[]websockets!
+
+//[X]file uploading
+//[]validations - Joi is also a middleware
+
+//[]websockets! - chat, gaming
 
 //fs & multer
 //fs = File storeage, this package has all the functions needed to read, write and append a file
+
+//Validation is a set of rules that we want to apply to our data such that there is some format in which the data is inserted
+//create an API which takes a document and just stored it inside my server
 
 //5,000,000 users = 0.2=1,000,000kb = 1000mb =1gb
 //3,000,000,000 users = 3,000,000 = 0.2 =6,000,000,000kb=6,000,000mb=6000gb 

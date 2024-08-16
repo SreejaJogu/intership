@@ -3,13 +3,19 @@
 const express = require('express')
 const router = express.Router();
 const { protect, authorize } = require('../middlewares/auth')
+const { upload } = require('../middlewares/upload')
+const { validate } = require('../middlewares/validate')
+const { createUserSchema, loginSchema } = require('../middlewares/validationSchema');
 
 const userController = require('../controllers/userController')
 
 //Create a new user
-router.post('/users', userController.createUser);
-router.post('/login', userController.loginUser);
+router.post('/users', validate(createUserSchema), userController.createUser);
+router.post('/login', validate(loginSchema), userController.loginUser);
 router.get('/data', protect, authorize('Admin'), userController.getAllUsers);
 router.put('/update/:id', protect, authorize('Student'), userController.updateUserById);
 router.put('/delete/:id', userController.softDeleteById)
+router.post('/upload', upload.single('file'), userController.uploadFile)
+router.post('/upload-multiple', upload.array('files', 5), userController.uploadMultipleFiles)
+
 module.exports = router;

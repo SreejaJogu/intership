@@ -135,3 +135,42 @@ exports.softDeleteById = async (req, res) => {
         })
     }
 }
+
+
+//This function is responsible for uploading aa file from local machine to the server
+exports.uploadFile = async(req, res)=> {
+    try{
+        res.status(201).json({ // uploading a file is quivalent to creating a new data inside the server instance
+            success:true,
+            data: req.file,
+            message: 'File uploaded successfully'
+        })
+    }catch (err){
+        res.status(500).json({
+            success:false,
+            message:err.message
+        })
+    }
+}
+
+exports.uploadMultipleFiles = async (req, res) => {
+    try {
+        if (req.files.length === 0) {
+            res.status(400).json({
+                success: false,
+                message: 'No files were uploaded'
+            })
+        }
+
+        res.status(201).json({  // uploading a file is quivalent to creating a new data inside the server instance
+            success: true,
+            data: req.file,
+            message: 'File uploaded successfully'
+        })
+    } catch (err)   {
+        res.status(500).json({
+            success: false,
+            message: err.message
+        })
+    }
+}
