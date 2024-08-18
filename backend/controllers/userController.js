@@ -174,3 +174,21 @@ exports.uploadMultipleFiles = async (req, res) => {
         })
     }
 }
+
+//write an API that returns me the list of all the students in the users collection.
+//for student users -> user.role = 'Student' [Filter]
+exports.getAllStudents = async (req, res) => {
+    try{
+        const users = await User.fin({role: 'Student', isDeleted: false});
+
+        res.status(200).json({
+            success: true,
+            data: users
+        })
+    } catch (err){
+        res.status(500).json({
+            success: false,
+            message: err.message
+        })
+    }
+}

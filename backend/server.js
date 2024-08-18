@@ -1,6 +1,5 @@
 // Libray Management System: Role: Admin, Student, Teacher (Backend)
-
-// 1. Ability to login/signup
+// 1. [X]Ability to login/signup
 // 2. The Admin shall be able to see all the students who in the Library
 // 3. The Admin shall be able to see all the book inside the Library
 // 4. The student can issue a book from the library if it is available. Student needs to return book in 1 week
@@ -8,12 +7,10 @@
 // 6. If the admin finds that a student has kept the book more than due date, the admin shall be able to send an email reminder to the student
 // 6. New books will be added by the Admin
 
-
 // 7. If the admin finds that a student has kept the book more than due date, the admin shall be able to send an email reminder to the student
 // 8. The student can return a book
 // 9. Student can request a book
 // 10. Autocomplete from the list of books
-
 
 // Technical Planning
 // [X] API are present for login/signup (creatUser) which can create a student or admin
@@ -77,8 +74,10 @@ mongoose.connection.on('connected', ()=>{
 })
 
 const userRoutes = require('./routes/userRoute')
+const bookRoutes = require('./routes/bookRoute')
 
 app.use('/api', userRoutes)
+app.use('/api', bookRoutes)
 
 //listen on port 8080 and start my server
 app.listen(port, () =>{
