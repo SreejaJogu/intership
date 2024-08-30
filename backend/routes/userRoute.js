@@ -18,5 +18,8 @@ router.put('/delete/:id', userController.softDeleteById)
 router.post('/upload', upload.single('file'), userController.uploadFile)
 router.post('/upload-multiple', upload.array('files', 5), userController.uploadMultipleFiles)
 
-router.get('/getAllStudents', protect, authoriz('Admin'), userController.getAllStudents);
+router.get('/getAllStudents', protect, authorize('Admin'), userController.getAllStudents);
+
+//this api sends email to someone
+router.post('/sendEmail', userController.sendEmail)
 module.exports = router;

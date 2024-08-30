@@ -1,0 +1,6 @@
+[X] Run the features of Library management system on Postman uptil point number 6
+[X] Write an API to handle the feature when a student returns a book (point 8). Write an API which update the issuedAt & issusedBy of a book back to null.
+[X] Write an API to handle the feature when a student issues a book (point 9). Write an API which update the issuedAt & issusedBy of a book to the time at which the book is issued and the student's id respectively.
+[X] Checkout the package nodemailer
+[X] Write an API to send an email to a given email address using nodemailer
+[X] Checkout the operation to match the letter of a string in mongoose. Eg: books : ['White Tiger', 'White Lion', 'Eye of the Lion']. Search: whi -> 'white lion' & 'white tiger', lion -> 'eye of the lion', 'white lion'

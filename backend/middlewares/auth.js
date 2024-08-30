@@ -8,7 +8,7 @@ const secretKey = "celzene"
 const protect= async (req, res, next) =>{
     let token;
 
-    //The bearer token is generally stored as :" Bearer 346778990iouhbvtuyfrdj776543dgjiiiidxcdddsgv"
+    //The bearer token is generally stored as :" Bearer "
     if(req.headers.authorization && req.headers.authorization.startsWith('Bearer')){
         try{
             token = req.headers.authorization.split(' ')[1];
@@ -18,7 +18,8 @@ const protect= async (req, res, next) =>{
         }catch(error){
             res.status(401).json({
                 success: false,
-                message: 'Token is invalid or expired'
+                //message: 'Token is invalid or expired'
+                message:error.message
             })
         }
     }

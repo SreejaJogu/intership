@@ -2,6 +2,7 @@
 
 const User = require('../models/userModel');
 const jwt = require('jsonwebtoken')
+const { sendEmail } = require('../utils/email')
 
 const secretKey = "celzene"
 
@@ -178,14 +179,57 @@ exports.uploadMultipleFiles = async (req, res) => {
 //write an API that returns me the list of all the students in the users collection.
 //for student users -> user.role = 'Student' [Filter]
 exports.getAllStudents = async (req, res) => {
-    try{
-        const users = await User.fin({role: 'Student', isDeleted: false});
+    try {
+        const users = await User.find({ role: 'Student', isDeleted: false });
 
         res.status(200).json({
             success: true,
             data: users
         })
-    } catch (err){
+    } catch (err)   {
+        res.status(500).json({
+            success: false,
+            message: err.message
+        })
+    }
+}
+exports.sendEmail = async (req, res) => {
+    const { to, subject, text } = req.body;
+
+    try {
+        await sendEmail(to, subject, text);
+
+        res.status(200).json({
+            success: true,
+            message: 'Email sent successfully to ' + to
+        })
+    } catch (err)   {
+        res.status(500).json({
+            success: false,
+            message: err.message
+        })
+    }
+}
+
+exports.getUserById = async (req, res) => {
+    const { id } = req.params
+
+    try {
+        const user = await User.findById(id)
+
+        if (!user)  {
+            res.status(404).json({
+                success: false,
+                message: 'User not found'
+            })
+        }
+
+        res.status(200).json({
+            success: true,
+            data: user
+        })
+
+    } catch (err)   {
         res.status(500).json({
             success: false,
             message: err.message
